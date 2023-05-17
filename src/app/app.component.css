@@ -37,6 +37,10 @@ p {
     font-weight: 600;
 }
 
+.toolbar a {
+    padding-left: 5px;
+}
+
 .toolbar img {
     margin: 0 16px;
 }
@@ -54,6 +58,16 @@ p {
 .toolbar #twitter-logo:hover,
 .toolbar #youtube-logo:hover {
     opacity: 0.8;
+}
+
+.toolbar label {
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.actived {
+    color: yellow;
+    font-weight: bold;
 }
 
 .content {
@@ -227,6 +241,7 @@ footer {
 footer a {
     display: flex;
     align-items: center;
+    padding-inline: 10px;
 }
 
 .github-star-badge {
