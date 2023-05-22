@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule,HTTP_INTERCEPTORS } from "@angular/common/http";
 import { routing,appRoutingProviders } from './app.routing';
 
 import { AppComponent } from './app.component';
@@ -27,6 +28,7 @@ import { ConversorPipe } from './pipes/coversor.pipe';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     routing
   ],
   providers: [appRoutingProviders],

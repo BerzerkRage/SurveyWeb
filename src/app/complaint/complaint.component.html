@@ -36,8 +36,16 @@
         <div class="card-footer">
             <div class="row">
                 <div class="float-right">
-                    <button type="submit" class="btn btn-primary" [disabled]="formComplaint.invalid">Enviar</button>
+                    <div *ngIf="formComplaint.valid; then formCompleted else formIncomplated"></div>
                 </div>
+                <ng-template #formCompleted>
+                    <button type="submit" class="btn btn-primary" [disabled]="formComplaint.invalid">Enviar</button>
+                </ng-template>
+                <ng-template #formIncomplated>
+                    <h4>
+                        <span class="badge bg-danger"><i class="bi bi-exclamation-circle-fill"></i> Complete el formulario</span>
+                    </h4>
+                </ng-template>
             </div>
         </div>
     </div>

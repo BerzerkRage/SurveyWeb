@@ -3,6 +3,8 @@ import { Complaint } from "./complaint";
 import { TypeComplaint } from "./typeComplaint";
 import { Router, ActivatedRoute } from "@angular/router";
 
+import { RequestExamples } from "../services/requestexpample.service";
+
 @Component({
     selector: "complaint",
     templateUrl: "./complaint.component.html"
@@ -16,6 +18,7 @@ export class ComplaintComponent {
     public selectedType!: TypeComplaint;
    
     constructor(
+        private requestExamples:RequestExamples
     ){
         this.complaint = new Complaint("","","");
         this.typeComplaint = [];
@@ -39,6 +42,19 @@ export class ComplaintComponent {
     }
 
     private printComplaint = ():string => {
+        this.requestExamples.sendComplaint(this.complaint);
+        this.requestExamples.getPosts().subscribe(
+            (response:any) => {
+                console.log(response);
+            }
+        );
+        this.requestExamples.postsPipe().subscribe(
+            (res) => {
+                console.log(res);
+            },(err) => {
+                alert("Something goes wrong in service client...",);
+            }
+        );
         return this.complaint.email+"\n"
                 +this.complaint.type+"\n"
                 +this.complaint.message;
