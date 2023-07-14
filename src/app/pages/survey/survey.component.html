@@ -1,0 +1,43 @@
+<form [formGroup]="surveyForm"(ngSubmit)="sendSurvey()" name="surveyControlForm">
+    <div class="card">
+        <div class="card-header">
+            <h3>{{title}}</h3>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <div class="control-label col-sm-2 col-md-2">EMail:</div>
+                <div class="col-sm-10 col-md-10">
+                    <input type="email" class="form-control"
+                    name="email" formControlName="email">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-sm-12 col-md-12">Tipo de Queja:</div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12 col-md-12">
+                    <select class="form-select is-invalid" name="typecomplaint" formControlName="estiloMusical">
+                        <option value=0 disabled>-Seleccione-</option>
+                        <option *ngFor="let item of listMusicStyles"
+                        [ngValue]="item.id">{{item.description}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="float-right">
+                    <div *ngIf="surveyForm.valid; then formCompleted else formIncomplated"></div>
+                </div>
+                <ng-template #formCompleted>
+                    <button type="submit" class="btn btn-primary" [disabled]="surveyForm.invalid">Enviar</button>
+                </ng-template>
+                <ng-template #formIncomplated>
+                    <h4>
+                        <span class="badge bg-danger"><i class="bi bi-exclamation-circle-fill"></i> Complete el formulario</span>
+                    </h4>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</form>
