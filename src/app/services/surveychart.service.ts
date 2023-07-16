@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
-import { SurveyModel, MusicStyle } from '../models/survey.model';
 import { Params } from './params.service';
+import { SurveyChartResult } from '../models/musicfav.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SurveyService extends Params {
+export class SurveyChartService extends Params {
 
   constructor(
     private _httpClient: HttpClient
@@ -17,27 +17,13 @@ export class SurveyService extends Params {
     super();
   }
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  };
 
-  getEstilosMusicales(): Observable<Array<MusicStyle>> {
+  getChart(): Observable<Array<SurveyChartResult>> {
     const URL_BASE:string = this.urlBase;
-    const REST_SERVICE:string = this.urlMusicStyleApiService+"/get"; 
+    const REST_SERVICE:string = this.urlSurveyApiService+"/chart"; 
 
     return this._httpClient
-      .get<Array<MusicStyle>>(URL_BASE+REST_SERVICE)
-      .pipe(retry(1), catchError(this.handleError));
-  }
-
-  sendEstiloMusicalFavorito(survey:SurveyModel): Observable<Boolean> {
-    const URL_BASE:string = this.urlBase;
-    const REST_SERVICE:string = this.urlSurveyApiService+"/"; 
-
-    return this._httpClient
-      .post<Boolean>(URL_BASE+REST_SERVICE,survey,this.httpOptions)
+      .get<Array<SurveyChartResult>>(URL_BASE+REST_SERVICE)
       .pipe(retry(1), catchError(this.handleError));
   }
 

@@ -5,5 +5,6 @@ export class SurveyModel {
 
 export class MusicStyle {
     public id!:number;
-    public description!:string;
+    public nombre!:string;
+    public activado!:boolean
 }

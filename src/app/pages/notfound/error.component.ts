@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from "@angular/router";
 
 @Component({
     selector:'error',
-    templateUrl: '../views/error.component.html'
+    templateUrl: './error.component.html'
 })
 
 export class ErrorComponent {
