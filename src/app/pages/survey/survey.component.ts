@@ -22,6 +22,7 @@ export class SurveyComponent implements OnInit, OnDestroy {
     private surveyModel!:SurveyModel;
 
     constructor(
+        private _router: Router,
         private formBuilder: FormBuilder,
         private location: Location,
         private _surveyService:SurveyService
@@ -60,6 +61,7 @@ export class SurveyComponent implements OnInit, OnDestroy {
                 window.alert("Se ha guardado la informacion correctamente.");
                 this.surveyForm.get('email')!.reset(),
                 this.surveyForm.get('estiloMusical')!.reset(0);
+                this._router.navigate(["/result"]);
             } else {
                 window.alert("No se ha podido guardar la informacion.");
             }
